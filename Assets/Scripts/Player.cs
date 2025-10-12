@@ -21,14 +21,19 @@ public class Player : MonoBehaviour
     public float attackDuration = 0.4f; // How long the attack lasts
     public float attackCooldown = 0.8f; // Time between attacks
 
+    [Header("Health Settings")]
+    public int maxHealth = 100;
+    public int currentHealth;
+
     private CharacterController controller;
     private Vector3 velocity;
     private bool isGrounded;
     private bool canAttack = true;
     private bool isAttacking = false;
 
-    private void Start()
+    private void Awake()
     {
+        currentHealth = maxHealth;
         controller = GetComponent<CharacterController>();
 
         // Make sure claw collider starts disabled so it doesn't hit enemies passively
@@ -111,5 +116,19 @@ public class Player : MonoBehaviour
         // Wait for cooldown before allowing another attack
         yield return new WaitForSeconds(attackCooldown);
         canAttack = true;
+    }
+    public void TakeDamage(int amount)
+    {
+        currentHealth -= amount;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+
+        Debug.Log($"Player took {amount} damage! Current health: {currentHealth}");
+
+        if (currentHealth <= 0)
+            Die();
+    }
+    private void Die()
+    {
+        Debug.Log("died!");
     }
 }
