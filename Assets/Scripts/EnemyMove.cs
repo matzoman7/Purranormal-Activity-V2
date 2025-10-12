@@ -6,32 +6,23 @@ public class EnemyMove : MonoBehaviour
     [Header("Inscribed")]
     public float moveSpeed;
     public Transform moveTarget;
+    public float stopRange;
 
-    [Header("Dynamic")]
-    public bool canMove;
     
-    void Start()
-    {
-        canMove = true;
-    }
+    
+    
 
     // Update is called once per frame
     void Update()
     {
-        if (canMove)
+        float distanceToPlayer = Vector3.Distance(transform.position, moveTarget.position);
+        if (distanceToPlayer > stopRange)
         {
             Move();
         }   
     }
 
-    public void OnCollisionEnter(Collision collision)
-    {
-        if (collision.transform.tag == "Player")
-        {
-            Debug.Log("Hit player");
-            canMove = false;
-        }
-    }
+    
 
     public void Move()
     {
