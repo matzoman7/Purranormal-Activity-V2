@@ -1,29 +1,46 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
+using static UnityEngine.GraphicsBuffer;
 
 public class ThirdPersonCamera : MonoBehaviour
 {
-    //Basic for now I just want to see the movements better
+    public Transform targetPlayer; // Player to follow
+    public Vector3 offset = new Vector3(0f, 2f, -4f);// over the should effect
+    public float mouseSensitivity = 100f;
+    public float distance = 4f;
+    public float pitchMin = -30f;
+    public float pitchMax = 60f;
 
-    public Transform targetPlayer; //The player
-    public Vector3 offset = new Vector3(1.5f, 3f, -3f);
-    public float speed = 10f;
+    private float yaw = 0f;
+    private float pitch = 10f;
 
-    private void Start()
+    void Start()
     {
-        //Lock cursor to center of the screen. For now idk if we want it 
+        // Lock the cursor to the center of the screen
         Cursor.lockState = CursorLockMode.Locked;
-        //Hides the cursor
+
+        // Hide the cursor
         Cursor.visible = false;
     }
     private void LateUpdate()
     {
         if (targetPlayer == null) return;
 
-        //Camera Position
-        Vector3 cameraPos = targetPlayer.position + targetPlayer.TransformDirection(offset);
-        //Camera Movement
-        transform.position = Vector3.Lerp(transform.position, cameraPos, speed * Time.deltaTime);
-        //Looking at player. Here for now just want to always see the player
+        // Mouse input
+        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
+        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+
+        yaw += mouseX;
+        pitch -= mouseY;
+        pitch = Mathf.Clamp(pitch, pitchMin, pitchMax); // limit up/down
+        // Rotate camera around player
+        Quaternion rotation = Quaternion.Euler(pitch, yaw, 0);
+        Vector3 desiredPosition = targetPlayer.position - rotation * Vector3.forward * distance + Vector3.up * offset.y;
+
+        transform.position = desiredPosition;
         transform.LookAt(targetPlayer.position + Vector3.up * 1.5f);
+
+        // Rotate player to match camera yaw
+        targetPlayer.rotation = Quaternion.Euler(0, yaw, 0);
     }
 }
