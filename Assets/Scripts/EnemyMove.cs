@@ -7,6 +7,7 @@ public class EnemyMove : MonoBehaviour
     [Header("AttackType")]
     public bool melee;
     public bool ranged;
+    public bool bigEnemy;
     
     [Header("Inscribed")]
     public float moveSpeed;
@@ -17,10 +18,20 @@ public class EnemyMove : MonoBehaviour
     public GameObject projectile;
     public float projectileSpeed;
     public float fireRate;
+    public int spawnCost;
 
+    private GameObject playerGo;
     private float fireTimer;
     private Animator enemyAnimator;
     private SphereCollider rightFirst;
+
+    public void Awake()
+    {
+
+        playerGo = GameObject.FindWithTag("Player");
+        moveTarget = playerGo.transform;
+    }
+
     public void Start()
     {
         enemyAnimator = GetComponent<Animator>();
@@ -31,27 +42,47 @@ public class EnemyMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        fireTimer -= Time.deltaTime;
-        Vector2 playerXZ = new Vector2(moveTarget.position.x, moveTarget.position.z);
-        Vector2 enemyXZ = new Vector2(transform.position.x, transform.position.z);
-        float distanceToPlayer = Vector3.Distance(enemyXZ, playerXZ);
-        if (distanceToPlayer > stopRange)
+        if (!bigEnemy)
         {
-            FacePlayer();
-            Move();
+            fireTimer -= Time.deltaTime;
+            Vector2 playerXZ = new Vector2(moveTarget.position.x, moveTarget.position.z);
+            Vector2 enemyXZ = new Vector2(transform.position.x, transform.position.z);
+            float distanceToPlayer = Vector3.Distance(enemyXZ, playerXZ);
+            if (distanceToPlayer > stopRange)
+            {
+                FacePlayer();
+                Move();
+            }
+            else
+            {
+                if (melee)
+                {
+                    MeleeAttack();
+                }
+                if (ranged)
+                {
+                    RangedAttack();
+                }
+
+            }
         }
         else
         {
-            if (melee)
+            fireTimer -= Time.deltaTime;
+            Vector2 playerXZ = new Vector2(moveTarget.position.x, moveTarget.position.z);
+            Vector2 enemyXZ = new Vector2(transform.position.x, transform.position.z);
+            float distanceToPlayer = Vector3.Distance(enemyXZ, playerXZ);
+            if (distanceToPlayer > stopRange)
+            {
+                FacePlayer();
+                RangedAttack();
+                Move();
+            }
+            else
             {
                 MeleeAttack();
             }
-            if (ranged) 
-            { 
-                RangedAttack();
-            }
-
-        }   
+        }  
     }
 
     public void FacePlayer()
