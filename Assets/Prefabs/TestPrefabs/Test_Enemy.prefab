@@ -129,6 +129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   melee: 1
   ranged: 0
+  bigEnemy: 0
   moveSpeed: 5
   moveTarget: {fileID: 0}
   stopRange: 2
@@ -137,6 +138,7 @@ MonoBehaviour:
   projectile: {fileID: 0}
   projectileSpeed: 0
   fireRate: 0
+  spawnCost: 1
 --- !u!54 &2046407025667768918
 Rigidbody:
   m_ObjectHideFlags: 0
