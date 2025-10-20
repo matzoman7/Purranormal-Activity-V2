@@ -15,6 +15,13 @@ public class Player : MonoBehaviour
     public float groundDistance = 0.2f;
     public LayerMask groundMask;
 
+    [Header("Dodge Roll Settings")]
+    public float rollSpeed = 10f;        // Speed during roll
+    public float rollDuration = 2.5f;    // How long roll lasts
+    public float rollCooldown = 1.5f;    // Time before next roll allowed
+    [HideInInspector]public bool isRolling = false;
+    private bool canRoll = true;
+
     [Header("Attack Settings")]
     public Animator animator;        // The Animator controlling attack animation
     public Collider clawCollider;    // The collider on the claws (set as Trigger)
@@ -29,7 +36,7 @@ public class Player : MonoBehaviour
     private Vector3 velocity;
     private bool isGrounded;
     private bool canAttack = true;
-    private bool isAttacking = false;
+    [HideInInspector] public bool isAttacking = false;
 
     private void Awake()
     {
@@ -43,52 +50,49 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        //                                  MOVEMENT CODE START
-        // -----------------------------------------------------------------------------------
-        if (!isAttacking) // prevent movement during attack
-        {
-            //Ground check
-            isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        // Skip input if attacking or rolling
+        if (isAttacking || isRolling)
+            return;
 
-            if (isGrounded && velocity.y < 0)
-            {
-                velocity.y = -2f;//Keeps player grounded (wip)
-            }
+        // ------------------ MOVEMENT ------------------
+        // Ground check
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        if (isGrounded && velocity.y < 0)
+            velocity.y = -2f; // Keeps player grounded
 
-            //Movement Input
-            float x = Input.GetAxis("Horizontal");
-            float z = Input.GetAxis("Vertical");
+        // Movement Input
+        float x = Input.GetAxis("Horizontal");
+        float z = Input.GetAxis("Vertical");
 
-            //Sprinting
-            float speed = Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : walkSpeed;
-
-            //Moving the Player
-            Vector3 move = transform.right * x + transform.forward * z;
+        // Only move if input exists
+        Vector3 move = transform.right * x + transform.forward * z;
+        float speed = Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : walkSpeed;
+        if (move.magnitude > 0.01f)
             controller.Move(move * speed * Time.deltaTime);
 
-            //Jumping
-            if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
-            {
-                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-            }
+        // Jumping
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
 
-            //Applying Gravity
-            velocity.y += gravity * Time.deltaTime;
-            controller.Move(velocity * Time.deltaTime);
-        }
-        // -----------------------------------------------------------------------------------
-        //                                  MOVEMENT CODE END
+        // Gravity
+        velocity.y += gravity * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
 
-
-        //                                  ATTACK CODE START
-        // -----------------------------------------------------------------------------------
-        if (Input.GetMouseButtonDown(0) && canAttack)
+        // ------------------ DODGE ROLL ------------------
+        if (Input.GetKeyDown(KeyCode.LeftControl) && canRoll && isGrounded)
         {
-            StartCoroutine(Attack());
+            // Only roll if player presses a direction
+            if (move.magnitude > 0.01f)
+            {
+                StartCoroutine(DodgeRoll(move.normalized));
+            }
         }
-        // -----------------------------------------------------------------------------------
-        //                                  ATTACK CODE END
+
+        // ------------------ ATTACK ------------------
+        if (Input.GetMouseButtonDown(0) && canAttack)
+            StartCoroutine(Attack());
     }
+
 
     private IEnumerator Attack()
     {
@@ -117,6 +121,54 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(attackCooldown);
         canAttack = true;
     }
+    private IEnumerator DodgeRoll(Vector3 rollDir)
+    {
+        isRolling = true;
+        canRoll = false;
+
+        // Determine rotation axis
+        Vector3 rotationAxis = Vector3.zero;
+        float rotationAngle = 360f; // one full flip
+
+        float forwardDot = Vector3.Dot(transform.forward, rollDir.normalized);
+        float rightDot = Vector3.Dot(transform.right, rollDir.normalized);
+
+        if (Mathf.Abs(forwardDot) > Mathf.Abs(rightDot))
+        {
+            // Forward/backward roll X axis
+            rotationAxis = Vector3.right;
+            if (forwardDot < 0) rotationAngle = -rotationAngle; // backward flip
+        }
+        else
+        {
+            // Left/right roll Z axis
+            rotationAxis = Vector3.forward;
+            if (rightDot > 0) rotationAngle = -rotationAngle; // right flip
+            else rotationAngle = rotationAngle;               // left flip
+        }
+
+        // Trigger in-place roll animation
+        if (animator != null)
+            animator.SetTrigger("Roll");
+
+        float elapsed = 0f;
+        while (elapsed < rollDuration)
+        {
+            // Apply rotation over time
+            float deltaAngle = (rotationAngle / rollDuration) * Time.deltaTime;
+            transform.Rotate(rotationAxis, deltaAngle, Space.Self);
+
+            controller.Move(rollDir.normalized * rollSpeed * Time.deltaTime);
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        isRolling = false;
+        yield return new WaitForSeconds(rollCooldown);
+        canRoll = true;
+    }
+
     public void TakeDamage(int amount)
     {
         currentHealth -= amount;

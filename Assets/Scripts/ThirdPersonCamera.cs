@@ -14,6 +14,8 @@ public class ThirdPersonCamera : MonoBehaviour
     private float yaw = 0f;
     private float pitch = 10f;
 
+    private Player playerScript; // Reference to the Player script
+
     void Start()
     {
         // Lock the cursor to the center of the screen
@@ -21,6 +23,9 @@ public class ThirdPersonCamera : MonoBehaviour
 
         // Hide the cursor
         Cursor.visible = false;
+
+        if (targetPlayer != null)
+            playerScript = targetPlayer.GetComponent<Player>();
     }
     private void LateUpdate()
     {
@@ -40,7 +45,10 @@ public class ThirdPersonCamera : MonoBehaviour
         transform.position = desiredPosition;
         transform.LookAt(targetPlayer.position + Vector3.up * 1.5f);
 
-        // Rotate player to match camera yaw
-        targetPlayer.rotation = Quaternion.Euler(0, yaw, 0);
+        // Only rotate player if not rolling or attacking
+        if (playerScript != null && !playerScript.isRolling && !playerScript.isAttacking)
+        {
+            targetPlayer.rotation = Quaternion.Euler(0, yaw, 0);
+        }
     }
 }
