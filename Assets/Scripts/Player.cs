@@ -17,8 +17,8 @@ public class Player : MonoBehaviour
 
     [Header("Dodge Roll Settings")]
     public float rollSpeed = 10f;        // Speed during roll
-    public float rollDuration = 2.5f;    // How long roll lasts
-    public float rollCooldown = 1.5f;    // Time before next roll allowed
+    public float rollDuration = 1f;    // How long roll lasts
+    public float rollCooldown = 1f;    // Time before next roll allowed
     [HideInInspector]public bool isRolling = false;
     private bool canRoll = true;
 
