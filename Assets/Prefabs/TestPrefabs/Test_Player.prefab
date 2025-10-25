@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 4681637580343108710}
   - component: {fileID: 3058728546551818343}
   - component: {fileID: 4992698522932258625}
+  - component: {fileID: 5794045600331073470}
   m_Layer: 0
   m_Name: CatClaw
   m_TagString: Untagged
@@ -139,6 +140,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5794045600331073470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4675366018046263165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 054c994d1427f2242a80e65804f38f1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7109171736380356741
 GameObject:
   m_ObjectHideFlags: 0
@@ -295,13 +308,22 @@ MonoBehaviour:
   sprintSpeed: 5
   jumpHeight: 2
   gravity: -9.81
-  turnTime: 0.1
   groundCheck: {fileID: 7037105290798611472}
   groundDistance: 0.2
   groundMask:
     serializedVersion: 2
     m_Bits: 64
-  cameraTransform: {fileID: 0}
+  rollSpeed: 10
+  rollDuration: 1
+  rollCooldown: 1
+  isRolling: 0
+  animator: {fileID: 0}
+  clawCollider: {fileID: 0}
+  attackDuration: 0.4
+  attackCooldown: 0.8
+  maxHealth: 100
+  currentHealth: 0
+  isAttacking: 0
 --- !u!95 &8716156575040242090
 Animator:
   serializedVersion: 7
