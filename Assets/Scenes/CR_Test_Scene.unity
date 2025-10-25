@@ -521,11 +521,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 515729656596304360, guid: 1943ba4b1744cb347a117fa31dc7f860, type: 3}
       propertyPath: m_LocalScale.x
-      value: 20
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 515729656596304360, guid: 1943ba4b1744cb347a117fa31dc7f860, type: 3}
       propertyPath: m_LocalScale.z
-      value: 20
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 515729656596304360, guid: 1943ba4b1744cb347a117fa31dc7f860, type: 3}
       propertyPath: m_LocalPosition.x
@@ -592,6 +592,10 @@ PrefabInstance:
       propertyPath: clawCollider
       value: 
       objectReference: {fileID: 445487937}
+    - target: {fileID: 3500577861559077684, guid: 3f26fc0dc57eff44f924acff0fbba29b, type: 3}
+      propertyPath: rollDuration
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3500577861559077684, guid: 3f26fc0dc57eff44f924acff0fbba29b, type: 3}
       propertyPath: cameraTransform
       value: 
