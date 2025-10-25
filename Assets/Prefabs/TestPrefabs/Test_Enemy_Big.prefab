@@ -245,9 +245,11 @@ MonoBehaviour:
   damage: 10
   firePoint: {fileID: 7297349481456285797}
   projectile: {fileID: 7855227228848753977, guid: 21078945f996c44478655e96a17d012b, type: 3}
+  gooblet: {fileID: 8560191687607594586, guid: 190ca62dd0643aa42bad2bd0ed17cef9, type: 3}
   projectileSpeed: 5
   fireRate: 1
   spawnCost: 2
+  goobletDropCount: 0
 --- !u!54 &5142804987174301911
 Rigidbody:
   m_ObjectHideFlags: 0

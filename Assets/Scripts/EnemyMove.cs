@@ -19,6 +19,11 @@ public class EnemyMove : MonoBehaviour
     public float projectileSpeed;
     public float fireRate;
     public int spawnCost;
+    public int goobletDropCount;
+
+    [Header("Gooblet Drop")]
+    public GameObject gooblet;
+    public float burstRadius = 1f;
 
     private GameObject playerGo;
     private float fireTimer;
@@ -144,6 +149,16 @@ public class EnemyMove : MonoBehaviour
             Destroy(tempProjectile, 5f);
 
             fireTimer = 1f / fireRate;
+        }
+    }
+
+    public void EnemyDie()
+    {
+        for (int i = goobletDropCount; i > 0; i--) 
+        {
+            Vector3 spawnPos = transform.position + Random.insideUnitSphere * burstRadius;
+            spawnPos.y = transform.position.y + 0.3f;
+            Instantiate(gooblet, spawnPos, gooblet.transform.rotation);
         }
     }
 }
