@@ -12,9 +12,13 @@ public class CatClaw : MonoBehaviour
             { 
                 enemy.EnemyDie();
                 Debug.Log("EnemyDieCalled");
+                enemy.health--;
             }
             
-            Destroy(other.gameObject);
+            if(enemy.health == 0)
+            {
+                Destroy(other.gameObject);
+            }
         }
     }
 }
