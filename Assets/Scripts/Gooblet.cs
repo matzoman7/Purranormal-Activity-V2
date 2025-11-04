@@ -28,7 +28,10 @@ public class Gooblet : MonoBehaviour
         Player player = other.GetComponent<Player>();
         if (player != null) 
         { 
-            player.goobletCount++;
+            if (GameManager.Instance != null)
+            {
+                GameManager.Instance.AddGooblets(1);
+            }
             Destroy(this.gameObject);
         }
     }
