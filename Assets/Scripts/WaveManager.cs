@@ -44,11 +44,22 @@ public class WaveManager : MonoBehaviour
             spawnTimer -= Time.fixedDeltaTime;
             waveTimer -= Time.fixedDeltaTime;
         }
+
+        if(enemiesToSpawn.Count == 0)
+        {
+            if (CheckForEnemies())
+            {
+                Debug.Log("Wave Cleared");
+                currWave++;
+                GenerateWave();
+            }
+        }
+        
     }
 
     public void GenerateWave()
     {
-        waveValue = currWave * 10;
+        waveValue = currWave * 6;
         GenerateEnemies();
 
         spawnInterval = waveDurration / enemiesToSpawn.Count;
@@ -78,7 +89,7 @@ public class WaveManager : MonoBehaviour
         enemiesToSpawn = generatedEnemies;
     }
 
-    /*public void GetSpawnPos()
+    public void GetSpawnPos()
     {
        
 
@@ -88,5 +99,17 @@ public class WaveManager : MonoBehaviour
 
         spawnLocation.position = new Vector3(xRand, yLoc, zRand);
 
-    }*/
+    }
+
+    public bool CheckForEnemies()
+    {
+        //return true if no enemies returns false if there are enemies
+
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        if(enemies.Length == 0)
+        {
+            return true;
+        }
+        return false;
+    }
 }

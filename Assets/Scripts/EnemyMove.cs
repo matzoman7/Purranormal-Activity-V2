@@ -82,8 +82,9 @@ public class EnemyMove : MonoBehaviour
             if (distanceToPlayer > stopRange)
             {
                 FacePlayer();
-                RangedAttack();
                 Move();
+                RangedAttack();
+                
             }
             else
             {
