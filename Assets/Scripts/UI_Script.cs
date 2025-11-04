@@ -3,6 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class UI_Script : MonoBehaviour
 {
+    
+    
+    
     public void GoToUpgrades()
     {
         SceneManager.LoadScene("Upgrades_Scene");
@@ -56,16 +59,23 @@ public class UI_Script : MonoBehaviour
 
     public void EnemyUpgrade1()
     {
+        //Acess enemy script 
+        //increase base damage by 5
+        //increase base health by 2
 
     }
 
     public void EnemyUpgrade2()
     {
-
+        //Acess enemy script 
+        //increase base damage by 5
+        //increase base health by 2
     }
 
     public void EnemyUpgrade3()
     {
-
+        //Acess enemy script 
+        //increase base damage by 5
+        //increase base health by 2
     }
 }

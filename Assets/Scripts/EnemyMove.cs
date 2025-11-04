@@ -8,8 +8,9 @@ public class EnemyMove : MonoBehaviour
     public bool melee;
     public bool ranged;
     public bool bigEnemy;
-    
+
     [Header("Inscribed")]
+    public float health;
     public float moveSpeed;
     public Transform moveTarget;
     public float stopRange;
@@ -35,6 +36,7 @@ public class EnemyMove : MonoBehaviour
 
         playerGo = GameObject.FindWithTag("Player");
         moveTarget = playerGo.transform;
+        
     }
 
     public void Start()
@@ -133,7 +135,15 @@ public class EnemyMove : MonoBehaviour
         if (player != null) 
         {
             //Debug.Log("Hit Player!");
-            player.TakeDamage(damage);
+            if (melee)
+            {
+                player.TakeDamage(damage);
+            }
+
+            if (bigEnemy) 
+            {
+                player.TakeDamage(damage +5);
+            }
         }
     }
 
