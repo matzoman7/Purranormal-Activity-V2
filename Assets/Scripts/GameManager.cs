@@ -1,4 +1,7 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -6,6 +9,17 @@ public class GameManager : MonoBehaviour
 
     [Header("Player Data")]
     public int totalGooblets;
+    private TextMeshProUGUI goobletText;
+
+    [Header("Upgrades")]
+    public int extraHealth = 0; // each upgrade adds to this
+    public int healthUpgradeLevel = 0; // 0 = none, 1 = level1, etc.
+    public int extraDamage = 0; // each upgrade adds to this
+    public int damageUpgradeLevel = 0; // 0 = none, 1 = level1, etc.
+
+    private int[] healthUpgradeCosts = { 3, 6, 9 }; // cost per level. Test Values
+    private int[] damageUpgradeCosts = { 3, 6, 9 }; // cost per level. Test Values
+
 
     private void Awake()
     {
@@ -13,22 +27,68 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject); // persists between scenes
+            SceneManager.sceneLoaded += SceneLoaded;//SceneLoaded() is called everytime we load a new scene.
         }
         else
         {
             Destroy(gameObject); // prevents duplicates
         }
     }
+    private void SceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "Upgrades_Scene" || scene.name == "Main_Menu_Scene")
+        {
+            goobletText = GameObject.FindWithTag("GoobletText").GetComponent<TextMeshProUGUI>();
 
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+
+            UpdateGoobletDisplay();
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+    }
     public void AddGooblets(int amount)
     {
         totalGooblets += amount;
         Debug.Log($"Gooblets: {totalGooblets}");
     }
-
-    public void SpendGooblets(int amount)
+    private void UpdateGoobletDisplay()
     {
-        totalGooblets = Mathf.Max(totalGooblets - amount, 0);
-        Debug.Log($"Gooblets left: {totalGooblets}");
+        goobletText.text = $" Gooblets: {totalGooblets.ToString()}";
+    }
+    public void UpgradeHealth()
+    {
+        // Check if we can upgrade further
+        if (healthUpgradeLevel >= healthUpgradeCosts.Length)
+        {
+            Debug.Log("Max health upgrades reached!");
+            return;
+        }
+
+        int cost = healthUpgradeCosts[healthUpgradeLevel];//our upgrade level determines how much it costs
+
+        if (totalGooblets >= cost)
+        {
+            totalGooblets -= cost;//spend gooblets
+            extraHealth += 1;
+            healthUpgradeLevel += 1;//upgrades our health level so we can purchase level 2
+            UpdateGoobletDisplay();
+
+            Debug.Log($"Purchased Health Upgrade {healthUpgradeLevel}! " +
+                      $"Extra health: {extraHealth}, Gooblets left: {totalGooblets}");
+        }
+        else
+        {
+            Debug.Log("Not enough gooblets for next health upgrade!");
+        }
+    }
+    public void UpgradeDamage()//will do later
+    {
+        extraDamage += 1;
+        Debug.Log($"Damage upgraded! Extra damage: {extraDamage}");
     }
 }
