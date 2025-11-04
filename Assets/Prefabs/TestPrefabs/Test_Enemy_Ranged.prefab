@@ -338,7 +338,7 @@ MonoBehaviour:
   moveSpeed: 5
   moveTarget: {fileID: 0}
   stopRange: 4
-  damage: 10
+  damage: 1
   firePoint: {fileID: 1147457476296025577}
   projectile: {fileID: 7855227228848753977, guid: 21078945f996c44478655e96a17d012b, type: 3}
   projectileSpeed: 5
