@@ -90,23 +90,49 @@ public class UI_Script : MonoBehaviour
 
     public void EnemyUpgrade1()
     {
-        //Acess enemy 1 script 
-        
-        //increase base health by 2
+        if (GameManager.Instance == null) return;
+        if (GameManager.Instance.enemyUpgradeLevel == 0)
+        {
+            GameManager.Instance.UpgradeEnemy();
+        }
+        else
+        {
+            Debug.Log("You’ve already bought this or a higher level!");
+        }
 
     }
 
     public void EnemyUpgrade2()
     {
-        //Acess enemy  2 script 
-        
-        //increase base health by 2
+        if (GameManager.Instance == null) return;
+        if (GameManager.Instance.enemyUpgradeLevel == 1)
+        {
+            GameManager.Instance.UpgradeEnemy();
+        }
+        else if (GameManager.Instance.enemyUpgradeLevel < 1)//Cant but level 2 unless they have 1.
+        {
+            Debug.Log("Buy Upgrade 1 first!");
+        }
+        else
+        {
+            Debug.Log("You’ve already bought this or a higher level!");
+        }
     }
 
     public void EnemyUpgrade3()
     {
-        //Acess enemy script 
-        //increase enemy 3 drop
-        //increase base health by 2
+        if (GameManager.Instance == null) return;
+        if (GameManager.Instance.enemyUpgradeLevel == 2)
+        {
+            GameManager.Instance.UpgradeEnemy();
+        }
+        else if (GameManager.Instance.enemyUpgradeLevel < 2)//Cant but level 2 unless they have 1.
+        {
+            Debug.Log("Buy Upgrade 1 first!");
+        }
+        else
+        {
+            Debug.Log("You’ve already bought this or a higher level!");
+        }
     }
 }
