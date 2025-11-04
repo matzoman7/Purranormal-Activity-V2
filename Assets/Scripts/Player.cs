@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
     [Header("Health Settings")]
     public int maxHealth = 100;
     public int currentHealth;
+    public int goobletCount;
 
     private CharacterController controller;
     private Vector3 velocity;
