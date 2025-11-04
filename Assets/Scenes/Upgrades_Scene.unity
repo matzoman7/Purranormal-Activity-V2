@@ -265,7 +265,7 @@ GameObject:
   - component: {fileID: 42747832}
   - component: {fileID: 42747831}
   m_Layer: 5
-  m_Name: LevelUpgrade1
+  m_Name: HealthUpgrade1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -337,7 +337,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2065886400}
         m_TargetAssemblyTypeName: UI_Script, Assembly-CSharp
-        m_MethodName: LevelUpgrade1
+        m_MethodName: HealthUpgrade1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -650,7 +650,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Level Upgrade 1
+  m_text: Health Upgrade 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -786,7 +786,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Level Upgrade 2
+  m_text: Health Upgrade 2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -957,7 +957,7 @@ GameObject:
   - component: {fileID: 472306587}
   - component: {fileID: 472306586}
   m_Layer: 5
-  m_Name: PlayerUpgrade1
+  m_Name: DamageUpgrade1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1029,7 +1029,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2065886400}
         m_TargetAssemblyTypeName: UI_Script, Assembly-CSharp
-        m_MethodName: PlayerUpgrade1
+        m_MethodName: DamageUpgrade1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1134,7 +1134,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Player Upgrade 2
+  m_text: Damage Upgrade 2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1270,7 +1270,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Player Upgrade 3
+  m_text: Damage Upgrade 3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1634,7 +1634,7 @@ GameObject:
   - component: {fileID: 637147204}
   - component: {fileID: 637147203}
   m_Layer: 5
-  m_Name: PlayerUpgrade3
+  m_Name: DamageUpgrade3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1706,7 +1706,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2065886400}
         m_TargetAssemblyTypeName: UI_Script, Assembly-CSharp
-        m_MethodName: PlayerUpgrade3
+        m_MethodName: DamageUpgrade3
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1767,7 +1767,7 @@ GameObject:
   - component: {fileID: 643792870}
   - component: {fileID: 643792869}
   m_Layer: 5
-  m_Name: PlayerUpgrade2
+  m_Name: DamageUpgrade2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1839,7 +1839,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2065886400}
         m_TargetAssemblyTypeName: UI_Script, Assembly-CSharp
-        m_MethodName: PlayerUpgrade2
+        m_MethodName: DamageUpgrade2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2172,7 +2172,7 @@ GameObject:
   - component: {fileID: 771012050}
   - component: {fileID: 771012049}
   m_Layer: 5
-  m_Name: LevelUpgrade3
+  m_Name: HealthUpgrade3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2244,7 +2244,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2065886400}
         m_TargetAssemblyTypeName: UI_Script, Assembly-CSharp
-        m_MethodName: LevelUpgrade3
+        m_MethodName: HealthUpgrade3
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2305,7 +2305,7 @@ GameObject:
   - component: {fileID: 823038142}
   - component: {fileID: 823038141}
   m_Layer: 5
-  m_Name: LevelUpgrade2
+  m_Name: HealthUpgrade2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2377,7 +2377,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2065886400}
         m_TargetAssemblyTypeName: UI_Script, Assembly-CSharp
-        m_MethodName: LevelUpgrade2
+        m_MethodName: HealthUpgrade2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2839,8 +2839,8 @@ GameObject:
   - component: {fileID: 1321093995}
   - component: {fileID: 1321093994}
   m_Layer: 5
-  m_Name: Points
-  m_TagString: Untagged
+  m_Name: Gooblets
+  m_TagString: GoobletText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2861,7 +2861,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -736, y: -477}
+  m_AnchoredPosition: {x: -660.5, y: -477}
   m_SizeDelta: {x: 264.562, y: 53.789}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1321093994
@@ -2884,7 +2884,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Points:'
+  m_text: 'Gooblets:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3485,7 +3485,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Player Upgrade 1
+  m_text: Damage Upgrade 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3621,7 +3621,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Level Upgrade 3
+  m_text: Health Upgrade 3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

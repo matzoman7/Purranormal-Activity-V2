@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(CharacterController))]
 public class Player : MonoBehaviour
@@ -19,7 +20,7 @@ public class Player : MonoBehaviour
     public float rollSpeed = 10f;        // Speed during roll
     public float rollDuration = 1f;    // How long roll lasts
     public float rollCooldown = 1f;    // Time before next roll allowed
-    [HideInInspector]public bool isRolling = false;
+    [HideInInspector] public bool isRolling = false;
     private bool canRoll = true;
 
     [Header("Attack Settings")]
@@ -29,7 +30,7 @@ public class Player : MonoBehaviour
     public float attackCooldown = 0.8f; // Time between attacks
 
     [Header("Health Settings")]
-    public int maxHealth = 100;
+    public int maxHealth = 3;
     public int currentHealth;
     public int goobletCount;
 
@@ -41,12 +42,23 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        currentHealth = maxHealth;
         controller = GetComponent<CharacterController>();
+
+
+        int bonus = 0;//this is the extrahealth from upgrades
+        if (GameManager.Instance != null)
+        {
+            bonus = GameManager.Instance.extraHealth;
+        }
+
+        maxHealth += bonus;
+        Debug.Log(maxHealth);
+        currentHealth = maxHealth;
 
         // Make sure claw collider starts disabled so it doesn't hit enemies passively
         if (clawCollider != null)
             clawCollider.enabled = false;
+
     }
 
     private void Update()
@@ -182,6 +194,7 @@ public class Player : MonoBehaviour
     }
     private void Die()
     {
+        SceneManager.LoadScene("Upgrades_Scene");
         Debug.Log("died!");
     }
 }
