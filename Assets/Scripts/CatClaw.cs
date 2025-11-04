@@ -10,9 +10,13 @@ public class CatClaw : MonoBehaviour
             if (enemy != null) 
             { 
                 enemy.EnemyDie();
+                enemy.health--;
             }
             
-            Destroy(other.gameObject);
+            if(enemy.health == 0)
+            {
+                Destroy(other.gameObject);
+            }
         }
     }
 }
