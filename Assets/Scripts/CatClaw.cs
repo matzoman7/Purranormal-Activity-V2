@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class CatClaw : MonoBehaviour
@@ -10,6 +11,7 @@ public class CatClaw : MonoBehaviour
             if (enemy != null) 
             { 
                 enemy.EnemyDie();
+                Debug.Log("EnemyDieCalled");
                 enemy.health--;
             }
             

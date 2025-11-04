@@ -169,6 +169,7 @@ public class EnemyMove : MonoBehaviour
             Vector3 spawnPos = transform.position + Random.insideUnitSphere * burstRadius;
             spawnPos.y = transform.position.y + 0.3f;
             Instantiate(gooblet, spawnPos, gooblet.transform.rotation);
+            Debug.Log("GoobletSpawned");
         }
     }
 }
