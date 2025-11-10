@@ -75,19 +75,53 @@ public class UI_Script : MonoBehaviour
         }            
     }
 
-    public void DamageUpgrade1()//will do later
+    public void DamageUpgrade1()
     {
-    }
+        if (GameManager.Instance == null) return;
 
+        if (GameManager.Instance.damageUpgradeLevel == 0)
+        {
+            GameManager.Instance.UpgradeDamage();
+        }
+        else
+        {
+            Debug.Log("You’ve already bought this or a higher level!");
+        }
+    }
     public void DamageUpgrade2()
     {
-    }
+        if (GameManager.Instance == null) return;
 
+        if (GameManager.Instance.damageUpgradeLevel == 1)
+        {
+            GameManager.Instance.UpgradeDamage();
+        }
+        else if (GameManager.Instance.damageUpgradeLevel < 1)
+        {
+            Debug.Log("Buy Upgrade 1 first!");
+        }
+        else
+        {
+            Debug.Log("You’ve already bought this or a higher level!");
+        }
+    }
     public void DamageUpgrade3()
     {
+        if (GameManager.Instance == null) return;
+
+        if (GameManager.Instance.damageUpgradeLevel == 2)
+        {
+            GameManager.Instance.UpgradeDamage();
+        }
+        else if (GameManager.Instance.damageUpgradeLevel < 2)
+        {
+            Debug.Log("Buy Upgrade 2 first!");
+        }
+        else
+        {
+            Debug.Log("You already have max damage!");
+        }
     }
-
-
     public void EnemyUpgrade1()
     {
         //Acess enemy 1 script 

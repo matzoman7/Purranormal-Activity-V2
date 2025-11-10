@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class CatClaw : MonoBehaviour
@@ -8,19 +7,21 @@ public class CatClaw : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             EnemyMove enemy = other.GetComponent<EnemyMove>();
-            if (enemy != null) 
-            { 
-                
-                
-                enemy.health--;
-            }
-            
-            if(enemy.health == 0)
+            if (enemy != null)
             {
-                Debug.Log("EnemyDieCalled");
-                enemy.EnemyDie();
-                Destroy(other.gameObject);
-                
+                // Enemy takes 1 damage
+                int totalDamage = 1 + GameManager.Instance.extraDamage;//the upgrades
+                enemy.health -= totalDamage;
+                Debug.Log($"Dealt {totalDamage} damage! Enemy health: {enemy.health}");
+
+
+                // Check if enemy died
+                if (enemy.health <= 0)
+                {
+                    Debug.Log("EnemyDieCalled");
+                    enemy.EnemyDie();
+                    Destroy(other.gameObject);
+                }
             }
         }
     }

@@ -86,9 +86,31 @@ public class GameManager : MonoBehaviour
             Debug.Log("Not enough gooblets for next health upgrade!");
         }
     }
-    public void UpgradeDamage()//will do later
+    public void UpgradeDamage()
     {
-        extraDamage += 1;
-        Debug.Log($"Damage upgraded! Extra damage: {extraDamage}");
+        // Check if we can upgrade further
+        if (damageUpgradeLevel >= damageUpgradeCosts.Length)
+        {
+            Debug.Log("Max damage upgrades reached!");
+            return;
+        }
+
+        int cost = damageUpgradeCosts[damageUpgradeLevel]; // cost based on current level
+
+        if (totalGooblets >= cost)
+        {
+            totalGooblets -= cost; // spend gooblets
+            extraDamage += 1;      // +1 damage per upgrade
+            damageUpgradeLevel += 1; // go to next upgrade level
+            UpdateGoobletDisplay();
+
+            Debug.Log($"Purchased Damage Upgrade {damageUpgradeLevel}! " +
+                      $"Extra damage: {extraDamage}, Gooblets left: {totalGooblets}");
+        }
+        else
+        {
+            Debug.Log("Not enough gooblets for next damage upgrade!");
+        }
     }
+
 }
