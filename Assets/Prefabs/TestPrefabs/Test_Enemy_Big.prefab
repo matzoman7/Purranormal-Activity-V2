@@ -102,7 +102,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -140,7 +140,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.38, y: 2.29, z: 12.13}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 100779108077229036}
@@ -248,8 +248,8 @@ MonoBehaviour:
   projectile: {fileID: 7855227228848753977, guid: 21078945f996c44478655e96a17d012b, type: 3}
   projectileSpeed: 5
   fireRate: 1
-  spawnCost: 2
-  goobletDropCount: 0
+  spawnCost: 4
+  goobletDropCount: 5
   gooblet: {fileID: 8560191687607594586, guid: 190ca62dd0643aa42bad2bd0ed17cef9, type: 3}
   burstRadius: 1
 --- !u!54 &5142804987174301911

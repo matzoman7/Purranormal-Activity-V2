@@ -90,23 +90,23 @@ public class UI_Script : MonoBehaviour
 
     public void EnemyUpgrade1()
     {
-        //Acess enemy script 
-        //increase base damage by 5
+        //Acess enemy 1 script 
+        
         //increase base health by 2
 
     }
 
     public void EnemyUpgrade2()
     {
-        //Acess enemy script 
-        //increase base damage by 5
+        //Acess enemy  2 script 
+        
         //increase base health by 2
     }
 
     public void EnemyUpgrade3()
     {
         //Acess enemy script 
-        //increase base damage by 5
+        //increase enemy 3 drop
         //increase base health by 2
     }
 }

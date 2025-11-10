@@ -10,14 +10,17 @@ public class CatClaw : MonoBehaviour
             EnemyMove enemy = other.GetComponent<EnemyMove>();
             if (enemy != null) 
             { 
-                enemy.EnemyDie();
-                Debug.Log("EnemyDieCalled");
+                
+                
                 enemy.health--;
             }
             
             if(enemy.health == 0)
             {
+                Debug.Log("EnemyDieCalled");
+                enemy.EnemyDie();
                 Destroy(other.gameObject);
+                
             }
         }
     }

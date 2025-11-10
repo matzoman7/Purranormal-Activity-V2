@@ -344,7 +344,7 @@ MonoBehaviour:
   projectileSpeed: 5
   fireRate: 1
   spawnCost: 3
-  goobletDropCount: 0
+  goobletDropCount: 3
   gooblet: {fileID: 8560191687607594586, guid: 190ca62dd0643aa42bad2bd0ed17cef9, type: 3}
   burstRadius: 1
 --- !u!54 &4013129096997333611
