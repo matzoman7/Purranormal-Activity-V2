@@ -329,6 +329,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1088109217}
   - component: {fileID: 1088109218}
+  - component: {fileID: 1088109219}
   m_Layer: 0
   m_Name: WaveManager
   m_TagString: Untagged
@@ -345,7 +346,7 @@ Transform:
   m_GameObject: {fileID: 1088109216}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -25.56, y: 2.13, z: 1}
+  m_LocalPosition: {x: 0, y: 2.13, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -369,10 +370,31 @@ MonoBehaviour:
   - {fileID: 5560302991707046327, guid: 092af0e532f88a443beef6aa92af2613, type: 3}
   waveDurration: 20
   spawnRange: 10
+  spawnArea: {fileID: 1088109219}
   currWave: 1
   waveValue: 0
   enemiesToSpawn: []
-  spawnLocation: {fileID: 1088109217}
+--- !u!65 &1088109219
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1088109216}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 66.64592, y: 13.326194, z: 69.34445}
+  m_Center: {x: 0.86395836, y: 6.163098, z: 0.06771088}
 --- !u!1001 &1535285394
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -399,7 +421,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4277805321110748971, guid: 3f26fc0dc57eff44f924acff0fbba29b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -6.51
       objectReference: {fileID: 0}
     - target: {fileID: 4277805321110748971, guid: 3f26fc0dc57eff44f924acff0fbba29b, type: 3}
       propertyPath: m_LocalRotation.w

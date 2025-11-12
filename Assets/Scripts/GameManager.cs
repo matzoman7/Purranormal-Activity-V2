@@ -17,6 +17,19 @@ public class GameManager : MonoBehaviour
     public int extraDamage = 0; // each upgrade adds to this
     public int damageUpgradeLevel = 0; // 0 = none, 1 = level1, etc.
 
+    [Header("Enemy Upgrades")]
+    public int extraEnemy1Health = 0;
+    public int extraEnemy2Health = 0;
+    public int extraEnemy3Health = 0;
+    public int extraEnemy1Damage = 0;
+    public int extraEnemy2Damage = 0;
+    public int extraEnemy3Damage = 0;
+    public int extraEnemy1GoobletDrop = 0;
+    public int extraEnemy2GoobletDrop = 0;
+    public int extraEnemy3GoobletDrop = 0;
+    public int enemyUpgradeLevel = 0;
+
+    private int[] enemyUpgradeCosts = { 5, 10, 15 };
     private int[] healthUpgradeCosts = { 3, 6, 9 }; // cost per level. Test Values
     private int[] damageUpgradeCosts = { 3, 6, 9 }; // cost per level. Test Values
 
@@ -113,4 +126,66 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
+        int cost = healthUpgradeCosts[healthUpgradeLevel];//our upgrade level determines how much it costs
+
+        if (totalGooblets >= cost)
+        {
+            totalGooblets -= cost;//spend gooblets
+            extraHealth += 1;
+            healthUpgradeLevel += 1;//upgrades our health level so we can purchase level 2
+            UpdateGoobletDisplay();
+
+            Debug.Log($"Purchased Health Upgrade {healthUpgradeLevel}! " +
+                      $"Extra health: {extraHealth}, Gooblets left: {totalGooblets}");
+        }
+        else
+        {
+            Debug.Log("Not enough gooblets for next health upgrade!");
+        }
+    }
+    public void UpgradeDamage()//will do later
+    {
+        extraDamage += 1;
+        Debug.Log($"Damage upgraded! Extra damage: {extraDamage}");
+    }
+
+    public void UpgradeEnemy()
+    {
+        if(enemyUpgradeLevel > enemyUpgradeCosts.Length)
+        {
+            Debug.Log("Max Enemy Upgrades Reached!");
+            return;
+            
+        }
+
+        int cost = enemyUpgradeCosts[enemyUpgradeLevel];
+
+        if(totalGooblets >= cost)
+        {
+            totalGooblets -= cost;
+            enemyUpgradeLevel++;
+
+            switch (enemyUpgradeLevel)
+            {
+                case 1:
+                    extraEnemy1Damage++;
+                    extraEnemy1Health++;
+                    extraEnemy1GoobletDrop += 2;
+                    break;
+                case 2:
+                    extraEnemy2Damage++; 
+                    extraEnemy2Health++;
+                    extraEnemy2GoobletDrop += 3;
+                    break;
+                case 3:
+                    extraEnemy3Damage++;
+                    extraEnemy3Health+=2;
+                    extraEnemy3GoobletDrop += 5;
+                    break;
+            }
+        }
+    }
+
+    
 }

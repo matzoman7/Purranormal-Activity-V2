@@ -10,7 +10,7 @@ public class EnemyMove : MonoBehaviour
     public bool bigEnemy;
 
     [Header("Inscribed")]
-    public float health;
+    public int health;
     public float moveSpeed;
     public Transform moveTarget;
     public float stopRange;
@@ -27,6 +27,7 @@ public class EnemyMove : MonoBehaviour
     public float burstRadius = 1f;
 
     private GameObject playerGo;
+    private Enemy_Projectile enemyProjectile;
     private float fireTimer;
     private Animator enemyAnimator;
     private SphereCollider rightFirst;
@@ -37,6 +38,73 @@ public class EnemyMove : MonoBehaviour
         playerGo = GameObject.FindWithTag("Player");
         moveTarget = playerGo.transform;
         
+        if (melee)
+        {
+            int bonusHealth = 0;
+            int bonusDamage = 0;
+            int bonusGoobletDrop = 0;
+
+            health = 1;
+            damage = 1;
+            goobletDropCount = 1;
+            if (GameManager.Instance != null)
+            {
+                bonusHealth = GameManager.Instance.extraEnemy1Health;
+                bonusDamage = GameManager.Instance.extraEnemy1Damage;
+                bonusGoobletDrop = GameManager.Instance.extraEnemy1GoobletDrop;
+            }
+
+            health += bonusHealth;
+            damage += bonusDamage;
+            goobletDropCount += bonusGoobletDrop;
+        }
+
+        if (ranged) 
+        {
+            
+            enemyProjectile = projectile.GetComponent<Enemy_Projectile>();
+            int projectileDamage = enemyProjectile.damage;
+            projectileDamage = 1;
+            int bonusHealth = 0;
+            int bonusDamage = 0;
+            int bonusGoobletDrop = 0;
+
+            health = 2;
+            goobletDropCount = 3;
+
+            if (GameManager.Instance != null)
+            {
+                bonusHealth = GameManager.Instance.extraEnemy2Health;
+                bonusDamage = GameManager.Instance.extraEnemy2Damage;
+                bonusGoobletDrop = GameManager.Instance.extraEnemy2GoobletDrop;
+            }
+
+            health += bonusHealth;
+            projectileDamage += bonusDamage;
+            goobletDropCount += bonusGoobletDrop;
+
+        }
+
+        if (bigEnemy)
+        {
+            int bonusHealth = 0;
+            int bonusDamage = 0;
+            int bonusGoobletDrop = 0;
+
+            health = 3;
+            damage = 2;
+            goobletDropCount = 5;
+            if (GameManager.Instance != null)
+            {
+                bonusHealth = GameManager.Instance.extraEnemy3Health;
+                bonusDamage = GameManager.Instance.extraEnemy3Damage;
+                bonusGoobletDrop = GameManager.Instance.extraEnemy3GoobletDrop;
+            }
+
+            health += bonusHealth;
+            damage += bonusDamage;
+            goobletDropCount += bonusGoobletDrop;
+        }
     }
 
     public void Start()
@@ -53,6 +121,8 @@ public class EnemyMove : MonoBehaviour
         {
             fireTimer -= Time.deltaTime;
             Vector2 playerXZ = new Vector2(moveTarget.position.x, moveTarget.position.z);
+            float playerY = moveTarget.position.y;
+            float enemyY = transform.position.y;
             Vector2 enemyXZ = new Vector2(transform.position.x, transform.position.z);
             float distanceToPlayer = Vector3.Distance(enemyXZ, playerXZ);
             if (distanceToPlayer > stopRange)
@@ -77,7 +147,8 @@ public class EnemyMove : MonoBehaviour
         {
             fireTimer -= Time.deltaTime;
             Vector2 playerXZ = new Vector2(moveTarget.position.x, moveTarget.position.z);
-            Vector2 enemyXZ = new Vector2(transform.position.x, transform.position.z);
+            Vector3 enemyXZ = new Vector2(transform.position.x, transform.position.z);
+            
             float distanceToPlayer = Vector3.Distance(enemyXZ, playerXZ);
             if (distanceToPlayer > stopRange)
             {
@@ -106,7 +177,7 @@ public class EnemyMove : MonoBehaviour
 
     public void Move()
     {
-        Vector3 targetPos = new Vector3(moveTarget.position.x, transform.position.y, moveTarget.position.z); //Calculate new position as to not change the enemys y pos
+        Vector3 targetPos = moveTarget.position;
         transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);
 
     }
