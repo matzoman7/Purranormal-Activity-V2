@@ -121,6 +121,8 @@ public class EnemyMove : MonoBehaviour
         {
             fireTimer -= Time.deltaTime;
             Vector2 playerXZ = new Vector2(moveTarget.position.x, moveTarget.position.z);
+            float playerY = moveTarget.position.y;
+            float enemyY = transform.position.y;
             Vector2 enemyXZ = new Vector2(transform.position.x, transform.position.z);
             float distanceToPlayer = Vector3.Distance(enemyXZ, playerXZ);
             if (distanceToPlayer > stopRange)
@@ -145,7 +147,8 @@ public class EnemyMove : MonoBehaviour
         {
             fireTimer -= Time.deltaTime;
             Vector2 playerXZ = new Vector2(moveTarget.position.x, moveTarget.position.z);
-            Vector2 enemyXZ = new Vector2(transform.position.x, transform.position.z);
+            Vector3 enemyXZ = new Vector2(transform.position.x, transform.position.z);
+            
             float distanceToPlayer = Vector3.Distance(enemyXZ, playerXZ);
             if (distanceToPlayer > stopRange)
             {
@@ -174,7 +177,7 @@ public class EnemyMove : MonoBehaviour
 
     public void Move()
     {
-        Vector3 targetPos = new Vector3(moveTarget.position.x, transform.position.y, moveTarget.position.z); //Calculate new position as to not change the enemys y pos
+        Vector3 targetPos = moveTarget.position;
         transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);
 
     }

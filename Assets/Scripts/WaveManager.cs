@@ -6,12 +6,13 @@ public class WaveManager : MonoBehaviour
     public List<GameObject> enemiesList = new List<GameObject>();
     public float waveDurration;
     public float spawnRange = 10;
+    public BoxCollider spawnArea;
 
     [Header("Dynamic")]
     public int currWave;
     public int waveValue;
     public List<GameObject> enemiesToSpawn = new List<GameObject>();
-    public Transform spawnLocation;
+    
 
     private float spawnInterval;
     private float spawnTimer;
@@ -28,8 +29,8 @@ public class WaveManager : MonoBehaviour
         {
             if(enemiesToSpawn.Count > 0) 
             {
-                
-                Instantiate(enemiesToSpawn[0], spawnLocation.position,Quaternion.identity );
+                Vector3 randomPos = GetSpawnPos();
+                Instantiate(enemiesToSpawn[0], randomPos,Quaternion.identity );
                 enemiesToSpawn.RemoveAt(0);
                 spawnTimer = spawnInterval; 
                 
@@ -89,15 +90,22 @@ public class WaveManager : MonoBehaviour
         enemiesToSpawn = generatedEnemies;
     }
 
-    public void GetSpawnPos()
+    public Vector3 GetSpawnPos()
     {
-       
+       Vector3 center = spawnArea.center + spawnArea.transform.position;
+       Vector3 size = spawnArea.size;
 
-        float xRand = Random.Range(-spawnRange, spawnRange) +transform.position.x;
+       float x = Random.Range(center.x - size.x / 2, center.x + size.x / 2);
+       float y = Random.Range(center.y - size.y / 2, center.y + size.y / 2);
+       float z = Random.Range(center.z - size.z / 2, center.z + size.z / 2);
+
+       return new Vector3(x, y, z);
+
+        /*float xRand = Random.Range(-spawnRange, spawnRange) +transform.position.x;
         float zRand = Random.Range(-spawnRange, spawnRange) +transform.position.z;
         float yLoc = transform.position.y;
 
-        spawnLocation.position = new Vector3(xRand, yLoc, zRand);
+        spawnLocation.position = new Vector3(xRand, yLoc, zRand);*/
 
     }
 
@@ -112,4 +120,6 @@ public class WaveManager : MonoBehaviour
         }
         return false;
     }
+
+    
 }
