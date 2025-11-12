@@ -134,7 +134,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -323,6 +323,7 @@ MonoBehaviour:
   attackCooldown: 0.8
   maxHealth: 100
   currentHealth: 0
+  goobletCount: 0
   isAttacking: 0
 --- !u!95 &8716156575040242090
 Animator:
