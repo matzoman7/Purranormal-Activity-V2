@@ -127,7 +127,7 @@ public class GameManager : MonoBehaviour
 
 
 
-        cost = healthUpgradeCosts[healthUpgradeLevel];//our upgrade level determines how much it costs
+        /*cost = healthUpgradeCosts[healthUpgradeLevel];//our upgrade level determines how much it costs
 
         if (totalGooblets >= cost)
         {
@@ -142,7 +142,7 @@ public class GameManager : MonoBehaviour
         else
         {
             Debug.Log("Not enough gooblets for next health upgrade!");
-        }
+        }*/
     }
 
     public void UpgradeEnemy()
@@ -159,6 +159,7 @@ public class GameManager : MonoBehaviour
         if(totalGooblets >= cost)
         {
             totalGooblets -= cost;
+            UpdateGoobletDisplay();
             enemyUpgradeLevel++;
 
             switch (enemyUpgradeLevel)
