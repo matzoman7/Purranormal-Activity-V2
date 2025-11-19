@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
     public int maxHealth = 3;
     public int currentHealth;
     public int goobletCount;
+    public GameObject[] healthUI;
 
     private CharacterController controller;
     private Vector3 velocity;
@@ -186,7 +187,7 @@ public class Player : MonoBehaviour
     {
         currentHealth -= amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-
+        healthUI[currentHealth].SetActive(false);
         Debug.Log($"Player took {amount} damage! Current health: {currentHealth}");
 
         if (currentHealth <= 0)

@@ -22,6 +22,8 @@ public class EnemyMove : MonoBehaviour
     public int spawnCost;
     public int goobletDropCount;
 
+    public bool hasDamaged;
+
     [Header("Gooblet Drop")]
     public GameObject gooblet;
     public float burstRadius = 1f;
@@ -199,6 +201,7 @@ public class EnemyMove : MonoBehaviour
     public void DisableMeleeAttack()
     {
         rightFirst.enabled = false;
+        hasDamaged = false;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -206,18 +209,18 @@ public class EnemyMove : MonoBehaviour
         Player player = other.GetComponent<Player>();
         if (player != null) 
         {
-            //Debug.Log("Hit Player!");
-            if (melee)
-            {
-                player.TakeDamage(damage);
-            }
+            if (hasDamaged) return;
 
-            if (bigEnemy) 
-            {
-                player.TakeDamage(damage +5);
-            }
+            Debug.Log("Hit Player!");
+            player.TakeDamage(damage);
+            hasDamaged = true;
+
         }
     }
+
+
+
+    
 
     public void RangedAttack()
     {

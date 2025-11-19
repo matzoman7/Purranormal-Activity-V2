@@ -729,6 +729,65 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 182374892}
   m_CullTransparentMesh: 1
+--- !u!1 &217604265
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 217604267}
+  - component: {fileID: 217604266}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &217604266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 217604265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d8fad33fb49b81498105ca40b270f50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  totalGooblets: 0
+  extraHealth: 1
+  healthUpgradeLevel: 0
+  extraDamage: 1
+  damageUpgradeLevel: 0
+  extraEnemy1Health: 1
+  extraEnemy2Health: 1
+  extraEnemy3Health: 1
+  extraEnemy1Damage: 1
+  extraEnemy2Damage: 1
+  extraEnemy3Damage: 1
+  extraEnemy1GoobletDrop: 1
+  extraEnemy2GoobletDrop: 1
+  extraEnemy3GoobletDrop: 1
+  enemyUpgradeLevel: 0
+--- !u!4 &217604267
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 217604265}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.6614127, y: 1.3757216, z: -2.4381204}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &454965843
 GameObject:
   m_ObjectHideFlags: 0
@@ -3928,4 +3987,5 @@ SceneRoots:
   - {fileID: 1956269247}
   - {fileID: 1691665091}
   - {fileID: 466767235}
+  - {fileID: 217604267}
   - {fileID: 2065886404}
