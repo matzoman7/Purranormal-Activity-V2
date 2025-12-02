@@ -9,7 +9,7 @@ public class Enemy_Projectile : MonoBehaviour
         Player player = other.GetComponent<Player>();
         if (player != null)
         {
-            //Debug.Log("Hit Player!");
+            Debug.Log("Hit Player!");
             player.TakeDamage(damage);
             Destroy(this.gameObject);
         }

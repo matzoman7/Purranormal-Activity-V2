@@ -202,9 +202,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesList:
-  - {fileID: 3363078138897237922, guid: e595cd0ca312953459e647b0f7370fb8, type: 3}
-  - {fileID: 8131303554532207193, guid: e1a5a8ee7277d5545882c305d37899b6, type: 3}
-  - {fileID: 5560302991707046327, guid: 092af0e532f88a443beef6aa92af2613, type: 3}
+  - {fileID: 8731621216474186955, guid: 5316357a55d01ee479d91d821a1791d3, type: 3}
+  - {fileID: 8246753956620356473, guid: 7f49ea71cda3c0542a14f4df3e27fa68, type: 3}
+  - {fileID: 6757343240094790720, guid: e66bd1dfd4b83e7439fd71d4e7bbbdff, type: 3}
   waveDurration: 20
   spawnRange: 10
   spawnArea: {fileID: 288230923}
@@ -2361,6 +2361,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3030cc61f12297a47b8e73d73be3a564, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UISprite: {fileID: 0}
+  health2: {fileID: 0}
+  health2Text: {fileID: 0}
+  health3: {fileID: 0}
+  health3Text: {fileID: 0}
+  damage2: {fileID: 0}
+  damage2Text: {fileID: 0}
+  damage3: {fileID: 0}
+  damage3Text: {fileID: 0}
+  enemy2: {fileID: 0}
+  enemy2Text: {fileID: 0}
+  enemy3: {fileID: 0}
+  enemy3Text: {fileID: 0}
+  gameManager: {fileID: 0}
+  popUp: {fileID: 0}
+  alreadyBoughtText: {fileID: 0}
+  newPurchaseText: {fileID: 0}
+  notEnoughGoobsText: {fileID: 0}
 --- !u!114 &1889476992
 MonoBehaviour:
   m_ObjectHideFlags: 0
