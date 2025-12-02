@@ -26,8 +26,8 @@ public class Player : MonoBehaviour
     [Header("Attack Settings")]
     public Animator animator;        // The Animator controlling attack animation
     public Collider clawCollider;    // The collider on the claws (set as Trigger)
-    public float attackDuration = 0.4f; // How long the attack lasts
-    public float attackCooldown = 0.8f; // Time between attacks
+    public float attackDuration = 0.5f; // How long the attack lasts
+    public float attackCooldown = 0f; // Time between attacks
 
     [Header("Health Settings")]
     public int maxHealth = 3;
@@ -187,11 +187,13 @@ public class Player : MonoBehaviour
     {
         currentHealth -= amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-        healthUI[currentHealth].SetActive(false);
+        
         Debug.Log($"Player took {amount} damage! Current health: {currentHealth}");
 
         if (currentHealth <= 0)
             Die();
+
+        healthUI[currentHealth].SetActive(false);
     }
     private void Die()
     {
