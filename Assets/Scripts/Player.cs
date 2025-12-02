@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
         // Skip input if attacking or rolling
-        if (isAttacking || isRolling)
+        if (isRolling)
             return;
 
         // ------------------ MOVEMENT ------------------
@@ -123,7 +123,7 @@ public class Player : MonoBehaviour
 
         // Wait for attack animation hit duration
         yield return new WaitForSeconds(attackDuration);
-
+        
         // Disable claw collider again
         if (clawCollider != null)
             clawCollider.enabled = false;
