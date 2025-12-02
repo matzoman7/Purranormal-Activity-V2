@@ -247,4 +247,12 @@ public class EnemyMove : MonoBehaviour
             Debug.Log("GoobletSpawned");
         }
     }
+
+    void OnTriggerExit(Collider other)
+    {
+        if(other.gameObject.name == "HomeArea")
+        {
+            health = 0;
+        }
+    }
 }
