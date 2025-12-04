@@ -191,9 +191,14 @@ public class Player : MonoBehaviour
         Debug.Log($"Player took {amount} damage! Current health: {currentHealth}");
 
         if (currentHealth <= 0)
+        {
             Die();
+        }
+        if (currentHealth > 0 && currentHealth <= 2)
+        {
+            healthUI[currentHealth].SetActive(false);
 
-        healthUI[currentHealth].SetActive(false);
+        }
     }
     private void Die()
     {
