@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.SceneManagement;
 
@@ -33,7 +34,7 @@ public class Player : MonoBehaviour
     public int maxHealth = 3;
     public int currentHealth;
     public int goobletCount;
-    public GameObject[] healthUI;
+    public List<GameObject> healthUI = new List<GameObject>();
 
     private CharacterController controller;
     private Vector3 velocity;
@@ -59,7 +60,7 @@ public class Player : MonoBehaviour
         // Make sure claw collider starts disabled so it doesn't hit enemies passively
         if (clawCollider != null)
             clawCollider.enabled = false;
-
+        InitializeHeartsUI();
     }
 
     private void Update()
@@ -194,9 +195,15 @@ public class Player : MonoBehaviour
         {
             Die();
         }
-        if (currentHealth > 0 && currentHealth <= 2)
+        if (currentHealth > 0 && currentHealth <= maxHealth)
         {
-            healthUI[currentHealth].SetActive(false);
+            for (int i = 0; i < healthUI.Count; i++) 
+            {
+
+                healthUI[i].SetActive(i < currentHealth);
+            }
+            
+            //healthUI[currentHealth].SetActive(false);
 
         }
     }
@@ -204,5 +211,13 @@ public class Player : MonoBehaviour
     {
         SceneManager.LoadScene("Upgrades_Scene");
         Debug.Log("died!");
+    }
+
+    private void InitializeHeartsUI()
+    {
+        for (int i = 0; i < healthUI.Count; i++)
+        {
+            healthUI[i].SetActive(i < maxHealth);
+        }
     }
 }
