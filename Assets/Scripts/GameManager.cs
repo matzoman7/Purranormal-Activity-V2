@@ -51,12 +51,16 @@ public class GameManager : MonoBehaviour
     {
         if (scene.name == "Upgrades_Scene" || scene.name == "Main_Menu_Scene")
         {
-            goobletText = GameObject.FindWithTag("GoobletText").GetComponent<TextMeshProUGUI>();
+            if (scene.name == "Upgrades_Scene")
+            {
+                goobletText = GameObject.FindWithTag("GoobletText").GetComponent<TextMeshProUGUI>();
+                UpdateGoobletDisplay();
+
+            }
 
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
 
-            UpdateGoobletDisplay();
         }
         else
         {
