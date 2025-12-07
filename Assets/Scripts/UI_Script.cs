@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class UI_Script : MonoBehaviour
 {
     public Sprite UISprite;
+    public Sprite lockSprite;
     public GameObject health2;
     public GameObject health2Text;
     public GameObject health3;
@@ -36,8 +37,60 @@ public class UI_Script : MonoBehaviour
     public void Awake()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        ApplyLock();
     }
-
+    public void ApplyLock()
+    {
+        if (GameManager.Instance.healthUpgradeLevel == 0)
+        {
+            health2.GetComponent<Image>().sprite = lockSprite;
+            health2Text.SetActive(false);
+            health3Text.SetActive(false);
+            health3.GetComponent<Image>().sprite = lockSprite;
+        }
+        else if (GameManager.Instance.healthUpgradeLevel == 1)
+        {
+            health2Text.SetActive(true);
+            health3Text.SetActive(false);
+            health3.GetComponent<Image>().sprite = lockSprite;}
+        else
+        {
+            health2Text.SetActive(true);
+            health3Text.SetActive(true);}
+        //The same code above but for damage and enemy.
+        if (GameManager.Instance.damageUpgradeLevel == 0)
+        {
+            damage2.GetComponent<Image>().sprite = lockSprite;
+            damage2Text.SetActive(false);
+            damage3Text.SetActive(false);
+            damage3.GetComponent<Image>().sprite = lockSprite;
+        }
+        else if (GameManager.Instance.damageUpgradeLevel == 1)
+        {
+            damage2Text.SetActive(true);
+            damage3Text.SetActive(false);
+            damage3.GetComponent<Image>().sprite = lockSprite;}
+        else
+        {
+            damage2Text.SetActive(true);
+            damage3Text.SetActive(true);}
+        if (GameManager.Instance.enemyUpgradeLevel == 0)
+        {
+            enemy2.GetComponent<Image>().sprite = lockSprite;
+            enemy2Text.SetActive(false);
+            enemy3Text.SetActive(false);
+            enemy3.GetComponent<Image>().sprite = lockSprite;
+        }
+        else if (GameManager.Instance.enemyUpgradeLevel == 1)
+        {
+            enemy2Text.SetActive(true);
+            enemy3Text.SetActive(false);
+            enemy3.GetComponent<Image>().sprite = lockSprite;}
+        else
+        {
+            enemy2Text.SetActive(true);
+            enemy3Text.SetActive(true);}
+    }
 
     public void GoToUpgrades()
     {
