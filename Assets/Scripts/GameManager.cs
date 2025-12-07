@@ -91,8 +91,26 @@ public class GameManager : MonoBehaviour
         if (totalGooblets >= cost)
         {
             totalGooblets -= cost;//spend gooblets
-            extraHealth += 1;
-            healthUpgradeLevel += 1;//upgrades our health level so we can purchase level 2
+
+            switch (healthUpgradeLevel)
+            {
+                case 0:
+                    extraHealth += 1;
+                    healthUpgradeLevel += 1;
+                    break;
+                case 1:
+                    extraHealth += 2;   
+                    healthUpgradeLevel += 1;
+                    break;
+                case 2:
+                    extraHealth += 3;
+                    healthUpgradeLevel += 1;
+                    break;
+                
+            }
+
+            //extraHealth += 1;
+            //healthUpgradeLevel += 1;//upgrades our health level so we can purchase level 2
             UpdateGoobletDisplay();
 
             Debug.Log($"Purchased Health Upgrade {healthUpgradeLevel}! " +
@@ -168,17 +186,17 @@ public class GameManager : MonoBehaviour
 
             switch (enemyUpgradeLevel)
             {
-                case 1:
+                case 0:
                     extraEnemy1Damage++;
                     extraEnemy1Health++;
                     extraEnemy1GoobletDrop += 2;
                     break;
-                case 2:
+                case 1:
                     extraEnemy2Damage++; 
                     extraEnemy2Health++;
                     extraEnemy2GoobletDrop += 3;
                     break;
-                case 3:
+                case 2:
                     extraEnemy3Damage++;
                     extraEnemy3Health+=2;
                     extraEnemy3GoobletDrop += 5;
