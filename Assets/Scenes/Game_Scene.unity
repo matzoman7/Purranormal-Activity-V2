@@ -2320,8 +2320,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   rollSpeed: 10
-  rollDuration: 1
-  rollCooldown: 1
+  rollDuration: 0.3
+  rollCooldown: 2.5
   isRolling: 0
   animator: {fileID: 1816780244}
   clawCollider: {fileID: 1426819425}

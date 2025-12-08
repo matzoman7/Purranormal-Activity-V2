@@ -19,8 +19,8 @@ public class Player : MonoBehaviour
 
     [Header("Dodge Roll Settings")]
     public float rollSpeed = 10f;        // Speed during roll
-    public float rollDuration = 1f;    // How long roll lasts
-    public float rollCooldown = 1f;    // Time before next roll allowed
+    public float rollDuration = 0.3f;    // How long roll lasts
+    public float rollCooldown = 2.5f;    // Time before next roll allowed
     [HideInInspector] public bool isRolling = false;
     private bool canRoll = true;
 
@@ -136,46 +136,19 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(attackCooldown);
         canAttack = true;
     }
-    private IEnumerator DodgeRoll(Vector3 rollDir)
+    IEnumerator DodgeRoll(Vector3 rollDir)
     {
         isRolling = true;
         canRoll = false;
 
-        // Determine rotation axis
-        Vector3 rotationAxis = Vector3.zero;
-        float rotationAngle = 360f; // one full flip
+        float time = 0f;
 
-        float forwardDot = Vector3.Dot(transform.forward, rollDir.normalized);
-        float rightDot = Vector3.Dot(transform.right, rollDir.normalized);
-
-        if (Mathf.Abs(forwardDot) > Mathf.Abs(rightDot))
+        while (time < rollDuration)
         {
-            // Forward/backward roll X axis
-            rotationAxis = Vector3.right;
-            if (forwardDot < 0) rotationAngle = -rotationAngle; // backward flip
-        }
-        else
-        {
-            // Left/right roll Z axis
-            rotationAxis = Vector3.forward;
-            if (rightDot > 0) rotationAngle = -rotationAngle; // right flip
-            else rotationAngle = rotationAngle;               // left flip
-        }
-
-        // Trigger in-place roll animation
-        if (animator != null)
-            animator.SetTrigger("Roll");
-
-        float elapsed = 0f;
-        while (elapsed < rollDuration)
-        {
-            // Apply rotation over time
-            float deltaAngle = (rotationAngle / rollDuration) * Time.deltaTime;
-            transform.Rotate(rotationAxis, deltaAngle, Space.Self);
-
+            // Fast movement burst
             controller.Move(rollDir.normalized * rollSpeed * Time.deltaTime);
 
-            elapsed += Time.deltaTime;
+            time += Time.deltaTime;
             yield return null;
         }
 
@@ -183,6 +156,7 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(rollCooldown);
         canRoll = true;
     }
+
 
     public void TakeDamage(int amount)
     {
