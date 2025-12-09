@@ -37,7 +37,11 @@ public class UI_Script : MonoBehaviour
     public void Awake()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        ApplyLock();
+        if (SceneManager.GetActiveScene().name == "Upgrades_Scene")
+        {
+            ApplyLock();
+
+        }
     }
     public void ApplyLock()
     {
