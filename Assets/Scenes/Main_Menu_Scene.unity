@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.7960785, g: 0.7960785, b: 0.80392164, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -662,7 +662,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.78823537, g: 0.78823537, b: 0.7960785, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -900,19 +900,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalGooblets: 0
-  extraHealth: 1
+  extraHealth: 0
   healthUpgradeLevel: 0
-  extraDamage: 1
+  extraDamage: 0
   damageUpgradeLevel: 0
-  extraEnemy1Health: 1
-  extraEnemy2Health: 1
-  extraEnemy3Health: 1
-  extraEnemy1Damage: 1
-  extraEnemy2Damage: 1
-  extraEnemy3Damage: 1
-  extraEnemy1GoobletDrop: 1
-  extraEnemy2GoobletDrop: 1
-  extraEnemy3GoobletDrop: 1
+  extraEnemy1Health: 0
+  extraEnemy2Health: 0
+  extraEnemy3Health: 0
+  extraEnemy1Damage: 0
+  extraEnemy2Damage: 0
+  extraEnemy3Damage: 0
+  extraEnemy1GoobletDrop: 0
+  extraEnemy2GoobletDrop: 0
+  extraEnemy3GoobletDrop: 0
   enemyUpgradeLevel: 0
 --- !u!4 &1137919799
 Transform:
@@ -1117,8 +1117,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -120}
-  m_SizeDelta: {x: 962.563, y: 67}
+  m_AnchoredPosition: {x: -578.563, y: 6.3463}
+  m_SizeDelta: {x: 343.68, y: 202.15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1265945985
 MonoBehaviour:
@@ -1206,7 +1206,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: -127.92035, z: 659.9033, w: 0}
+  m_margin: {x: -2.9596252, y: 3.5346684, z: -1.7963638, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1271,6 +1271,7 @@ MonoBehaviour:
   alreadyBoughtText: {fileID: 0}
   newPurchaseText: {fileID: 0}
   notEnoughGoobsText: {fileID: 0}
+  needPriorLevelText: {fileID: 0}
 --- !u!114 &1343422327
 MonoBehaviour:
   m_ObjectHideFlags: 0

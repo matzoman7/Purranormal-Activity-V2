@@ -25,12 +25,14 @@ public class UI_Script : MonoBehaviour
     public GameObject alreadyBoughtText;
     public GameObject newPurchaseText;
     public GameObject notEnoughGoobsText;
+    public GameObject needPriorLevelText;
 
     public void ClosePopUp()
     {
         alreadyBoughtText.SetActive(false);
         newPurchaseText.SetActive(false);
         notEnoughGoobsText.SetActive(false);
+        needPriorLevelText.SetActive(false);
         popUp.SetActive(false);
     }
 
@@ -103,6 +105,7 @@ public class UI_Script : MonoBehaviour
 
     public void Quit()
     {
+        Debug.Log("Quit!");
         Application.Quit();
     }
 
@@ -179,7 +182,8 @@ public class UI_Script : MonoBehaviour
         }
         else if (GameManager.Instance.healthUpgradeLevel < 2)//Cant but level 3 unless they have 1 and 2
         {
-            Debug.Log("Buy Upgrade 2 first!");
+            popUp.SetActive(true);
+            needPriorLevelText.SetActive(true);
         }
         else if (GameManager.Instance.healthUpgradeLevel > 2)
         {
@@ -261,7 +265,8 @@ public class UI_Script : MonoBehaviour
         }
         else if (GameManager.Instance.damageUpgradeLevel < 2)
         {
-            Debug.Log("Buy Upgrade 2 first!");
+            popUp.SetActive(true);
+            needPriorLevelText.SetActive(true);
         }
         else if (GameManager.Instance.damageUpgradeLevel > 2)
         {
@@ -342,7 +347,8 @@ public class UI_Script : MonoBehaviour
         }
         else if (GameManager.Instance.enemyUpgradeLevel < 2)//Cant but level 2 unless they have 1.
         {
-            Debug.Log("Buy Upgrade 1 first!");
+            popUp.SetActive(true);
+            needPriorLevelText.SetActive(true);
         }
         else if (GameManager.Instance.enemyUpgradeLevel > 2)
         {

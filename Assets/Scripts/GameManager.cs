@@ -194,12 +194,12 @@ public class GameManager : MonoBehaviour
                 case 1:
                     extraEnemy2Damage++; 
                     extraEnemy2Health++;
-                    extraEnemy2GoobletDrop += 3;
+                    extraEnemy2GoobletDrop += 2;
                     break;
                 case 2:
                     extraEnemy3Damage++;
                     extraEnemy3Health+=2;
-                    extraEnemy3GoobletDrop += 5;
+                    extraEnemy3GoobletDrop += 2;
                     break;
             }
         }
